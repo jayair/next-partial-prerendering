@@ -3,12 +3,16 @@ import { ProductCard } from '#/components/product-card';
 import { headers } from 'next/headers';
 import { delayRecommendedProducts } from '#/lib/constants';
 
-export async function RecommendedProducts() {
+interface Props {
+  filterId?: string;
+}
+export async function RecommendedProducts(props: Props) {
   headers();
+  const filterId = props.filterId || '1';
   let products: Product[] = await fetch(
     // We intentionally delay the response to simulate a slow data
     // request that would benefit from streaming
-    `https://app-router-api.vercel.app/api/products?delay=${delayRecommendedProducts}&filter=1`,
+    `https://app-router-api.vercel.app/api/products?delay=${delayRecommendedProducts}&filter=${filterId}`,
     {
       // We intentionally disable Next.js Cache to better demo
       // streaming

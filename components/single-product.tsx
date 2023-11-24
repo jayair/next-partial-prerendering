@@ -2,10 +2,20 @@ import { Pricing } from '#/components/pricing';
 import type { Product } from '#/types/product';
 import { ProductRating } from '#/components/product-rating';
 import Image from 'next/image';
+import { delaySingleProduct } from '#/lib/constants';
 
-export async function SingleProduct() {
+interface Props {
+  id?: string;
+}
+export async function SingleProduct(props: Props) {
+  const id = props.id || '1';
   const product: Product = await fetch(
-    `https://app-router-api.vercel.app/api/products?id=1`,
+    `https://app-router-api.vercel.app/api/products?id=${id}&delay=${delaySingleProduct}`,
+    {
+      // We intentionally disable Next.js Cache to better demo
+      // streaming
+      //cache: 'no-store',
+    },
   ).then((res) => res.json());
 
   return (

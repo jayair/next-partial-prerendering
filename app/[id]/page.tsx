@@ -7,15 +7,16 @@ import { Reviews, ReviewsSkeleton } from '#/components/reviews';
 import { SingleProduct } from '#/components/single-product';
 import { Ping } from '#/components/ping';
 
-export default function Page() {
+export default async function Page({ params }: { params: { id: string } }) {
+  const id = params.id;
   return (
     <div className="space-y-8 lg:space-y-14">
-      <SingleProduct />
+      <SingleProduct id={id} />
 
       <Ping />
 
       <Suspense fallback={<RecommendedProductsSkeleton />}>
-        <RecommendedProducts />
+        <RecommendedProducts filterId={id} />
       </Suspense>
 
       <Ping />

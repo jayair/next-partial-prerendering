@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Product } from '#/types/product';
 import { ProductBestSeller } from '#/components/product-best-seller';
 import { ProductEstimatedArrival } from '#/components/product-estimated-arrival';
@@ -12,7 +13,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const price = dinero(product.price as DineroSnapshot<number>);
 
   return (
-    <div className="group block">
+    <Link className="group block" href={`/${product.id}`}>
       <div className="space-y-2">
         <div className="relative aspect-square">
           {product.isBestSeller ? (
@@ -49,6 +50,6 @@ export const ProductCard = ({ product }: { product: Product }) => {
           <ProductLowStockWarning stock={product.stock} />
         ) : null}
       </div>
-    </div>
+    </Link>
   );
 };
