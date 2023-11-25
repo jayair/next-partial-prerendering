@@ -1,5 +1,5 @@
 // Times are in milliseconds
-export const delaySingleProduct = 1000;
-export const delayShippingEstimate = 2000;
-export const delayRecommendedProducts = 4000;
-export const delayReviews = 6000;
+export const delaySingleProduct = 200;
+export const delayShippingEstimate = 400;
+export const delayRecommendedProducts = 400;
+export const delayReviews = 600;
